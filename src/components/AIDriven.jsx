@@ -85,208 +85,185 @@ export default function AIDriven({ page_name }) {
                     {/* Prompt Input */}
 
 
-                    <div className="prompt-container">
-                        <input
-                            type="text"
-                            className="prompt-input"
-                            value={prompt}
-                            onChange={(e) => {
-                                setPrompt(e.target.value);
-                                if (e.target.value) setPlaceholder(""); // Clear placeholder on typing
-                            }}
-                            placeholder={!prompt ? placeholder : ""}
-                        />
-                        <button
-                            className="prompt-send"
-                            onClick={() => {
-                                if (!prompt.trim()) return;
-                                setAiLoading(true);
-                                setSubmittedPrompt(prompt);
-                                setPrompt("");
-                                setResponse(""); // Clear old response
+                    <div className="prompt-wrapper">
+  <div className="input-box">
+    <input
+      type="text"
+      className="prompt-input"
+      value={prompt}
+      onChange={(e) => {
+        setPrompt(e.target.value);
+        if (e.target.value) setPlaceholder("");
+      }}
+      placeholder=""
+    />
+    {!prompt && (
+      <div className="typing-placeholder">{placeholder}</div>
+    )}
+  </div>
 
-                                setTimeout(() => {
-                                    setAiLoading(false);
-                                    setResponse(
-                                        "Hey there! This is EnergyRec AI. How are you doing? I am here to assist you with recruitment and talent acquisition and share community knowledge."
-                                    );
-                                }, 1000);
-                            }}
-                            disabled={aiLoading}
-                        >
-                            {aiLoading ? <span className="spinner"></span> : "➤"}
-                        </button>
-                    </div>
+  <button
+    className="prompt-send"
+    onClick={() => {
+      if (!prompt.trim()) return;
+      setAiLoading(true);
+      setSubmittedPrompt(prompt);
+      setPrompt("");
+      setResponse("");
+
+      setTimeout(() => {
+        setAiLoading(false);
+        setResponse(
+          "Hey there! This is EnergyRec AI. How are you doing? I am here to assist you with recruitment and talent acquisition and share community knowledge."
+        );
+      }, 1000);
+    }}
+    disabled={aiLoading}
+  >
+    {aiLoading ? <span className="spinner"></span> : "➤"}
+  </button>
+</div>
+
+
                 </>
             )}
 
             <style>{`
         
-                        .prompt-send {
-                        background: #61DBFB;
-                        color: white;
-                        border: none;
-                        border-radius: 12px;
-                        padding: 0.5rem 1rem;
-                        margin-left: 0.5rem;
-                        cursor: pointer;
-                        font-weight: 500;
-                        transition: background 0.2s ease;
-                        }
-                        .prompt-send:disabled {
-                        opacity: 0.6;
-                        cursor: not-allowed;
-                        }
-                        .spinner {
-  width: 18px;
-  height: 18px;
+                        /* FLEX LAYOUT FOR INPUT + BUTTON */
+.prompt-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  max-width: 700px;
+  width: 100%;
+}
+
+/* INPUT CONTAINER */
+.input-box {
+  position: relative;
+  flex: 1;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  background: #f9f9f9;
+  padding: 0.75rem 1rem;
+  box-sizing: border-box;
+}
+
+/* INPUT FIELD */
+.prompt-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  position: relative;
+  z-index: 2;
+}
+
+/* PLACEHOLDER */
+.typing-placeholder {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: #999;
+  pointer-events: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1;
+  border-right: 1px solid #999;
+  animation: blink-caret 1s step-end infinite;
+  max-width: calc(100% - 2rem);
+}
+
+/* BIGGER + NICER BUTTON */
+.prompt-send {
+  width: 48px;
+  height: 48px;
+  background: #61DBFB;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.1s ease;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.prompt-send:hover {
+  background: #3ac0e0;
+}
+
+.prompt-send:active {
+  transform: scale(0.95);
+}
+
+.prompt-send:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* SPINNER */
+.spinner {
+  width: 20px;
+  height: 20px;
   border: 2px solid #ccc;
-  border-top: 2px solid #1d1d1f;
+  border-top: 2px solid #fff;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
   display: inline-block;
   vertical-align: middle;
 }
 
-                        @keyframes spin {
-                        to {
-                            transform: rotate(360deg);
-                        }
-                        }
-                    
-                        .prompt-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 16px;
-  margin-top: 2rem;
-  max-width: 700px;
-  width: 100%;
-  background: #f9f9f9;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-  position: relative;
-  box-sizing: border-box;
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-                  .prompt-input {
-  flex: 1;
-  border: none;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  background: transparent;
-  outline: none;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  padding-right: 3rem; /* reserve space for button */
-  position: relative;
-  z-index: 2;
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #999;
+  }
 }
 
-                        @keyframes blink-caret {
-                        from, to {
-                            border-color: transparent;
-                        }
-                        50% {
-                            border-color: #999;
-                        }
-                        }
-
-                        @media (max-width: 480px) {
-                        .prompt-container {
-                            flex-direction: column;
-                            align-items: stretch;
-                            padding: 0.5rem 0.75rem;
-                            border-radius: 12px;
-                        }
-
-                        .prompt-input {
-                            font-size: 0.9rem;
-                            padding: 0.5rem 0.75rem;
-                            margin-bottom: 0.5rem;
-                        }
-
-                        .prompt-send {
-  background: #61DBFB;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.2s ease;
-  position: absolute;
-  right: 0.75rem;
-  bottom: 0.75rem;
-  z-index: 3;
-}
-
-                        }
-                        .ai-response {
-                            margin-top: 1rem;
-                            background: #f0f8ff;
-                            border-left: 4px solid #61DBFB;
-                            padding: 1rem;
-                            border-radius: 8px;
-                            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-                            text-align: left;
-                            max-width: 700px;
-                            width: 100%;
-                            box-sizing: border-box;
-                            }
-
-                            .user-prompt {
-                            margin-bottom: 0.5rem;
-                            }
-
-                            .typing-placeholder {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #999;
-  pointer-events: none;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  white-space: nowrap;
-  user-select: none;
-  z-index: 1;
-  border-right: 1px solid #999;
-  animation: blink-caret 1s step-end infinite;
-  max-width: calc(100% - 4rem);
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-                            @media (max-width: 480px) {
-  .prompt-container {
+/* MOBILE RESPONSIVE */
+@media (max-width: 480px) {
+  .prompt-wrapper {
     flex-direction: row;
-    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
   }
 
   .prompt-input {
     font-size: 0.95rem;
-    padding: 0.5rem 1rem;
-    padding-right: 2.5rem;
   }
 
   .prompt-send {
-    width: 34px;
-    height: 34px;
-    font-size: 1rem;
-    margin-left: -2.5rem;
-    margin-right: 0;
+    width: 44px;
+    height: 44px;
+    font-size: 1.4rem;
   }
 
   .typing-placeholder {
-    max-width: calc(100% - 4rem);
-    left: 1rem;
+    font-size: 0.9rem;
   }
 }
+
+
+
                         `}
             </style>
         </>

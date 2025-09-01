@@ -130,29 +130,32 @@ export default function AIDriven({ page_name }) {
 
             <style>{`
         
-                        /* FLEX LAYOUT FOR INPUT + BUTTON */
+                        /* Container for input + button */
 .prompt-wrapper {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-top: 2rem;
-  max-width: 100vw;      
+  max-width: 100vw;      /* prevent horizontal scroll */
   width: 100%;
   box-sizing: border-box;
-  padding: 0 1rem;       
+  padding: 0 1rem;
+  overflow-x: hidden;
 }
 
+/* Input container */
 .input-box {
   position: relative;
-  flex-grow: 1;          
+  flex-grow: 1;
+  min-width: 0; /* critical to allow shrinking */
   border: 1px solid #e0e0e0;
   border-radius: 16px;
   background: #f9f9f9;
   padding: 0.75rem 1rem;
   box-sizing: border-box;
-  min-width: 0;          
 }
 
+/* Actual input */
 .prompt-input {
   width: 100%;
   border: none;
@@ -164,6 +167,7 @@ export default function AIDriven({ page_name }) {
   z-index: 2;
 }
 
+/* Typing placeholder */
 .typing-placeholder {
   position: absolute;
   top: 50%;
@@ -181,48 +185,71 @@ export default function AIDriven({ page_name }) {
   max-width: calc(100% - 2rem);
 }
 
+/* Send button - default desktop */
 .prompt-send {
-  width: 40px;           
-  height: 40px;
-  background: #61DBFB;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  font-size: 1.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  width: 48px !important;       /* force size */
+  height: 48px !important;
+  background: #61DBFB !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 50% !important;
+  font-size: 1.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
   transition: background 0.25s ease, transform 0.1s ease;
-  flex-shrink: 0;        /* don't shrink */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  flex-shrink: 0 !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1) !important;
+  position: relative !important;
+  margin-left: 0 !important;
 }
 
+/* Hover & active */
 .prompt-send:hover {
-  background: #3ac0e0;
+  background: #3ac0e0 !important;
 }
-
 .prompt-send:active {
-  transform: scale(0.95);
+  transform: scale(0.95) !important;
 }
-
 .prompt-send:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
 }
 
-
+/* Spinner */
 .spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ccc;
-  border-top: 2px solid #fff;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-  display: inline-block;
-  vertical-align: middle;
+  width: 20px !important;
+  height: 20px !important;
+  border: 2px solid #ccc !important;
+  border-top: 2px solid #fff !important;
+  border-radius: 50% !important;
+  animation: spin 0.6s linear infinite !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
 }
 
+/* MOBILE styles */
+@media (max-width: 480px) {
+  .prompt-wrapper {
+    padding: 0 0.75rem !important;
+  }
+  .prompt-send {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 1.4rem !important;
+    position: relative !important;
+    margin-left: 0.5rem !important;
+  }
+  .prompt-input {
+    font-size: 0.95rem !important;
+  }
+  .typing-placeholder {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Keyframe animations */
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -238,27 +265,6 @@ export default function AIDriven({ page_name }) {
   }
 }
 
-/* MOBILE RESPONSIVE */
-@media (max-width: 480px) {
-  .prompt-wrapper {
-    flex-direction: row;
-    gap: 0.5rem;
-  }
-
-  .prompt-input {
-    font-size: 0.95rem;
-  }
-
-  .prompt-send {
-    width: 44px;
-    height: 44px;
-    font-size: 1.4rem;
-  }
-
-  .typing-placeholder {
-    font-size: 0.9rem;
-  }
-}
 
 
 

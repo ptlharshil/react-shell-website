@@ -167,6 +167,23 @@ export default function AIDriven({ page_name }) {
   z-index: 2;
 }
 
+.ai-response {
+  margin-top: 1rem;
+  background: #f0f8ff;
+  border-left: 4px solid #61DBFB;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  text-align: left;
+  max-width: 100%;          /* Don't exceed width */
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;    /* Wrap long words */
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+
 /* Typing placeholder */
 .typing-placeholder {
   position: absolute;

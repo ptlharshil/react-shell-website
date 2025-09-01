@@ -94,13 +94,8 @@ export default function AIDriven({ page_name }) {
                                 setPrompt(e.target.value);
                                 if (e.target.value) setPlaceholder(""); // Clear placeholder on typing
                             }}
-                            placeholder=""
+                            placeholder={!prompt ? placeholder : ""}
                         />
-                        {!prompt && (
-                            <div className="typing-placeholder">
-                                {placeholder}
-                            </div>
-                        )}
                         <button
                             className="prompt-send"
                             onClick={() => {
@@ -187,21 +182,6 @@ export default function AIDriven({ page_name }) {
                         z-index: 2;
                         }
 
-                        .typing-placeholder {
-                        position: absolute;
-                        left: 1rem;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        color: #999;
-                        pointer-events: none;
-                        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-                        white-space: nowrap;
-                        user-select: none;
-                        z-index: 1;
-                        border-right: 1px solid #999;
-                        animation: blink-caret 1s step-end infinite;
-                        }
-
                         @keyframes blink-caret {
                         from, to {
                             border-color: transparent;
@@ -233,9 +213,6 @@ export default function AIDriven({ page_name }) {
                             margin-left: 0;
                         }
 
-                        .typing-placeholder {
-                            left: 0.75rem;
-                        }
                         }
                         .ai-response {
                             margin-top: 1rem;

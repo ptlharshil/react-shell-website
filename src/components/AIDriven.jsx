@@ -134,25 +134,25 @@ export default function AIDriven({ page_name }) {
 .prompt-wrapper {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 0.75rem;
+  gap: 0.5rem;
   margin-top: 2rem;
-  max-width: 700px;
+  max-width: 100vw;      
   width: 100%;
+  box-sizing: border-box;
+  padding: 0 1rem;       
 }
 
-/* INPUT CONTAINER */
 .input-box {
   position: relative;
-  flex: 1;
+  flex-grow: 1;          
   border: 1px solid #e0e0e0;
   border-radius: 16px;
   background: #f9f9f9;
   padding: 0.75rem 1rem;
   box-sizing: border-box;
+  min-width: 0;          
 }
 
-/* INPUT FIELD */
 .prompt-input {
   width: 100%;
   border: none;
@@ -164,7 +164,6 @@ export default function AIDriven({ page_name }) {
   z-index: 2;
 }
 
-/* PLACEHOLDER */
 .typing-placeholder {
   position: absolute;
   top: 50%;
@@ -182,21 +181,20 @@ export default function AIDriven({ page_name }) {
   max-width: calc(100% - 2rem);
 }
 
-/* BIGGER + NICER BUTTON */
 .prompt-send {
-  width: 48px;
-  height: 48px;
+  width: 40px;           
+  height: 40px;
   background: #61DBFB;
   color: white;
   border: none;
   border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: background 0.25s ease, transform 0.1s ease;
-  flex-shrink: 0;
+  flex-shrink: 0;        /* don't shrink */
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
@@ -213,7 +211,7 @@ export default function AIDriven({ page_name }) {
   cursor: not-allowed;
 }
 
-/* SPINNER */
+
 .spinner {
   width: 20px;
   height: 20px;

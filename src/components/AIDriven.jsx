@@ -130,37 +130,42 @@ export default function AIDriven({ page_name }) {
 
             <style>{`
         
-                        /* Container for input + button */
-.prompt-wrapper {
+            .prompt-wrapper {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 2rem;
-  max-width: 100vw;      /* prevent horizontal scroll */
   width: 100%;
+  max-width: 100vw;
   box-sizing: border-box;
   padding: 0 1rem;
   overflow-x: hidden;
 }
 
-/* Input container */
+
 .input-box {
-  position: relative;
   flex-grow: 1;
-  min-width: 0; /* critical to allow shrinking */
-  border: 1px solid #e0e0e0;
-  border-radius: 16px;
-  background: #f9f9f9;
-  padding: 0.75rem 1rem;
+  min-width: 0; /* This is critical for flexbox layouts */
+  width: 100%;
   box-sizing: border-box;
 }
+
+.prompt-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 
 /* Actual input */
 .prompt-input {
   width: 100%;
   border: none;
   outline: none;
-  font-size: 1rem;
+  font-size: 16px;
   background: transparent;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   position: relative;
@@ -204,23 +209,20 @@ export default function AIDriven({ page_name }) {
 
 /* Send button - default desktop */
 .prompt-send {
-  width: 48px !important;       /* force size */
-  height: 48px !important;
-  background: #61DBFB !important;
-  color: white !important;
-  border: none !important;
-  border-radius: 50% !important;
-  font-size: 1.5rem !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  cursor: pointer !important;
-  transition: background 0.25s ease, transform 0.1s ease;
-  flex-shrink: 0 !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1) !important;
-  position: relative !important;
-  margin-left: 0 !important;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #61DBFB;
+  color: white;
+  font-size: 1.4rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 /* Hover & active */
 .prompt-send:hover {

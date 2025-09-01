@@ -155,32 +155,33 @@ export default function AIDriven({ page_name }) {
                         }
                     
                         .prompt-container {
-                        position: relative;
-                        display: flex;
-                        align-self: center;
-                        align-items: center;
-                        padding: 0.75rem 1rem;
-                        border: 1px solid #e0e0e0;
-                        border-radius: 16px;
-                        margin-top: 2rem;
-                        max-width: 700px;
-                        width: 100%;
-                        background: #f9f9f9;
-                        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-                        box-sizing: border-box;
-                        }
+  position: relative;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  margin-top: 2rem;
+  max-width: 700px;
+  width: 100%;
+  background: #f9f9f9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  box-sizing: border-box;
+}
 
                         .prompt-input {
-                        flex: 1;
-                        border: none;
-                        font-size: 1rem;
-                        padding: 0.5rem;
-                        background: transparent;
-                        outline: none;
-                        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-                        position: relative;
-                        z-index: 2;
-                        }
+  flex: 1;
+  border: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  padding-right: 3rem; /* Leave space for the button */
+  background: transparent;
+  outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  position: relative;
+  z-index: 2;
+}
 
                         @keyframes blink-caret {
                         from, to {
@@ -206,12 +207,24 @@ export default function AIDriven({ page_name }) {
                         }
 
                         .prompt-send {
-                            font-size: 1rem;
-                            padding: 0.5rem;
-                            border-radius: 10px;
-                            width: 100%;
-                            margin-left: 0;
-                        }
+  background: #61DBFB;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 3;
+}
 
                         }
                         .ai-response {
@@ -231,7 +244,59 @@ export default function AIDriven({ page_name }) {
                             margin-bottom: 0.5rem;
                             }
 
+                            .typing-placeholder {
+                            position: absolute;
+                            left: 1rem;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #999;
+                            pointer-events: none;
+                            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+                            white-space: nowrap;
+                            user-select: none;
+                            z-index: 1;
+                            border-right: 1px solid #999;
+                            animation: blink-caret 1s step-end infinite;
 
+                            /* Add these lines to prevent overlap */
+                            max-width: calc(100% - 3rem); /* leave space for the button */
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            }
+
+                            @media (max-width: 480px) {
+                            .typing-placeholder {
+                                max-width: calc(100% - 3.5rem); /* slightly more margin for small screens */
+                            }
+                            }
+
+                            @media (max-width: 480px) {
+  .prompt-container {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 12px;
+  }
+
+  .prompt-input {
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    padding-right: 3rem; /* Ensures space for button */
+  }
+
+  .prompt-send {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    right: 1rem;
+    bottom: 0.75rem;
+  }
+
+  .typing-placeholder {
+    left: 1rem;
+    max-width: calc(100% - 3.5rem);
+  }
+}
                         `}
             </style>
         </>

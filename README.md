@@ -16,9 +16,8 @@ A simple, responsive, and clean React shell website that showcases a modern appr
 
 ## How to run and explore the "EnergyRec" shell website?
 
-- Open the build folder
-- Double click on index.html and you will head to the About Us page that has a sticky navbar
-which will stay put if the screen is small and the content is scrollable, for ease of 
+- Open the link (https://ptlharshil.github.io/react-shell-website/)
+- You will head to the About Us page that has a sticky navbar which will stay put if the screen is small and the content is scrollable, for ease of 
 navigation
 - First, Click the Accept button for cookies and then checkout Community Hub page and click on "Community Hub" button to see the loading spinner 
 - Next, kindly check the "AI-Driven" page and type hey in the input area and hit the Send button to see the response from EnergyRec AI after it thinks for a response.
@@ -29,8 +28,7 @@ navigation
 
 ## Community Integration Approach
 
-- Community Hub -   An online portal and mobile app where candidates, clients, and          recruiters connect that can be accessed directly from the shell website on clicking 
-a button on Community Page. 
+- Community Hub -   An online portal and mobile app where candidates, clients, and recruiters connect that can be accessed directly from the shell website on clicking a button on Community Page. 
 Features could include:
 1. Discussion forums on industry trends, job opportunities, and project collaboration.
 2. Peer-to-peer mentoring and knowledge sharing with the help of AI.

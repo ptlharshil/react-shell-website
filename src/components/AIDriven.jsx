@@ -135,6 +135,10 @@ export default function AIDriven({ page_name }) {
 
                                         
                         .prompt-wrapper {
+                        display: flex;           /* if flex */
+  justify-content: flex-start;  /* align children left */
+  align-items: center;
+                        
                         display: flex;
                         align-items: center;
                         gap: 0.5rem;
@@ -148,13 +152,15 @@ export default function AIDriven({ page_name }) {
 
                         /* Input container */
                         .input-box {
-                        position: relative;
+display: flex;           /* if flex */
+  justify-content: flex-start;  /* align children left */
+  align-items: center;                        position: relative;
                         flex-grow: 1;
                         min-width: 0; /* critical to allow shrinking */
                         border: 1px solid #e0e0e0;
                         border-radius: 16px;
                         background: #f9f9f9;
-                        padding: 0.75rem 1rem;
+                        padding: 0.75rem 0.5rem;
                         box-sizing: border-box;
                         }
 
@@ -162,16 +168,18 @@ export default function AIDriven({ page_name }) {
                         .prompt-input {
                         flex: 1;
                         font-size: 1rem;
-                        padding: 0.75rem 1rem;
+                        padding: 0.75rem 0.5rem;
                         border: 1px solid #ccc;
                         border-radius: 12px;
                         outline: none;
                         box-sizing: border-box;
                         font-family: inherit;
                         min-width: 0;
+                        text-align: left;
                         }
 
                         .ai-response {
+                        text-align: center;
                         margin-top: 1rem;
                         background: #f0f8ff;
                         border-left: 4px solid #61DBFB;
